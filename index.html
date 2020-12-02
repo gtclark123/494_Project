@@ -245,7 +245,7 @@
             <svg id="CLEviz" width="150" height="150">
                 <foreignobject class="node" x="10" y="25" width="150" height="150">
                     <img id="CLE" src="https://content.sportslogos.net/logos/6/222/full/6921_cleveland_cavaliers-primary-2018.png"
-                        onClick="getTeams('CLE')" alt=""></foreignobject>
+                         onClick="getTeams('CLE')" alt=""></foreignobject>
             </svg>
         </div>
 
@@ -253,11 +253,11 @@
         <div class="grid-container">
             <div style="margin-left: -4%">
                 <select id="selectBox" onchange="drawViz1(choice1, choice2), drawViz3(choice1,choice2)">
-                    <option value="field-goals">Fields Goals</option>
-                    <option value="blocks">Blocks</option>
-                    <option value="rebounds">Rebounds</option>
-                    <option value="assists">Assists</option>
-                    <option value="steals">Steals</option>
+                    <option value="Field-goals">Fields Goals</option>
+                    <option value="Blocks">Blocks</option>
+                    <option value="Rebounds">Rebounds</option>
+                    <option value="Assists">Assists</option>
+                    <option value="Steals">Steals</option>
                 </select>
             </div>
             <svg id="viz1"></svg>
@@ -324,12 +324,12 @@
             element.style.borderRadius = "50%";
 
             drawViz1(choice1, choice2);
-            drawViz3(choice1, choice2);
             // drawViz2(choice1 + "viz", choice2 + "viz");
 
         } else if (Boolean(select1) && Boolean(select2)) {
 
-
+            console.log(choice1);
+            console.log(choice2);
             let element1 = document.getElementById(choice1);
             let element2 = document.getElementById(choice2);
 
@@ -341,7 +341,6 @@
             choice2 = "";
 
             drawViz1(choice1, choice2);
-            drawViz3(choice1, choice2);
 
             select1 = 0;
             select2 = 0;

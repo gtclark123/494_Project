@@ -88,14 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function colorScale(bool) {
 
-    if (d3.select("#selectBox").property("value") === "field-goals") {
+    if (d3.select("#selectBox").property("value") === "Field-goals") {
         if (Boolean(bool)) {
             return "#eb4034";
         } else {
             return "#114591";
         }
 
-    } else if (d3.select("#selectBox").property("value") === "assists") {
+    } else if (d3.select("#selectBox").property("value") === "Assists") {
         if (Boolean(bool)) {
             return "#bf13b4"
 
@@ -103,25 +103,23 @@ function colorScale(bool) {
             return "#bf4913"
         }
 
-    } else if (d3.select("#selectBox").property("value") === "blocks") {
+    } else if (d3.select("#selectBox").property("value") === "Blocks") {
         if (Boolean(bool)) {
             return "#22961a"
         } else {
             return "#c1ed24"
         }
-    } else if (d3.select("#selectBox").property("value") === "steals") {
+    } else if (d3.select("#selectBox").property("value") === "Steals") {
         if (Boolean(bool)) {
             return "#a724ed"
-        }
-        else{
+        } else {
             return "#24e3ed"
         }
 
-    } else if (d3.select("#selectBox").property("value") === "rebounds") {
+    } else if (d3.select("#selectBox").property("value") === "Rebounds") {
         if (Boolean(bool)) {
             return "#edad24"
-        }
-        else{
+        } else {
             return "#6eeb96"
         }
 
@@ -151,7 +149,7 @@ function mousemove(axis, choice1, choice2) {
                 .duration(50)
                 .style("opacity", 1);
 
-            if (d3.select("#selectBox").property("value") === "field-goals") {
+            if (d3.select("#selectBox").property("value") === "Field-goals") {
 
                 let number = d["val"] * 100;
                 let rounded = Math.round(number * 10) / 10;
@@ -173,7 +171,7 @@ function mousemove(axis, choice1, choice2) {
                         .style("top", (event.pageY - 15) + "px");
                 }
 
-            } else if (d3.select("#selectBox").property("value") === "assists") {
+            } else if (d3.select("#selectBox").property("value") === "Assists") {
                 if (d["val"] < 0) {
                     let val = "Assists : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
 
@@ -188,7 +186,7 @@ function mousemove(axis, choice1, choice2) {
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 }
-            } else if (d3.select("#selectBox").property("value") === "blocks") {
+            } else if (d3.select("#selectBox").property("value") === "Blocks") {
                 if (d["val"] < 0) {
                     let val = "Blocks : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
 
@@ -203,7 +201,7 @@ function mousemove(axis, choice1, choice2) {
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 }
-            } else if (d3.select("#selectBox").property("value") === "steals") {
+            } else if (d3.select("#selectBox").property("value") === "Steals") {
                 if (d["val"] < 0) {
                     let val = "Steals : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
 
@@ -218,7 +216,7 @@ function mousemove(axis, choice1, choice2) {
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 }
-            } else if (d3.select("#selectBox").property("value") === "rebounds") {
+            } else if (d3.select("#selectBox").property("value") === "Rebounds") {
                 if (d["val"] < 0) {
                     let val = "Offensive Rebounds : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
 
@@ -264,22 +262,22 @@ function AxisLabels(axis) {
     let labelX = "Game Played During The Season";
     let labelY;
 
-    if (selection === "field-goals") {
+    if (selection === "Field-goals") {
         labelY = "Field Goal Percent"
 
-    } else if (d3.select("#selectBox").property("value") === "assists") {
+    } else if (d3.select("#selectBox").property("value") === "Assists") {
         labelY = "Assists Per Game"
 
 
-    } else if (d3.select("#selectBox").property("value") === "blocks") {
+    } else if (d3.select("#selectBox").property("value") === "Blocks") {
         labelY = "Blocks Per Game"
 
 
-    } else if (d3.select("#selectBox").property("value") === "steals") {
+    } else if (d3.select("#selectBox").property("value") === "Steals") {
         labelY = "Steals Per Game"
 
 
-    } else if (d3.select("#selectBox").property("value") === "rebounds") {
+    } else if (d3.select("#selectBox").property("value") === "Rebounds") {
         labelY = "Offensive Rebounds Per Game"
 
     }
@@ -291,6 +289,8 @@ function AxisLabels(axis) {
         .attr('dx', '-250')
         .style("fill", "gray")
         .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
         .text(labelY);
 
 
@@ -298,15 +298,13 @@ function AxisLabels(axis) {
         .attr('transform', `translate(${(innerWidth / 2) - 150},${innerHeight + 40})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
         .text(labelX);
 
 }
 
 function drawViz1(choice1, choice2) {
-
-
-    console.log(choice1);
-    console.log(choice2);
 
 
     g1.select("#axis-g2").remove();
@@ -316,7 +314,6 @@ function drawViz1(choice1, choice2) {
     let axis = g1.append("g").attr("id", "axis-g");
     let axis2 = g1.append("g").attr("id", "axis-g2");
 
-    console.log(teamStats);
 
     //Used for Graphing
     let teamShotInfo1 = [];
@@ -329,7 +326,7 @@ function drawViz1(choice1, choice2) {
     let i = 1;
 
     let selectVal = d3.select("#selectBox").property("value");
-    if (selectVal === "field-goals") {
+    if (selectVal === "Field-goals") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
                     teamShotInfo1.push(new Statistic(team["FieldGoals."], i));
@@ -340,7 +337,7 @@ function drawViz1(choice1, choice2) {
                 }
             }
         );
-    } else if (selectVal === "assists") {
+    } else if (selectVal === "Assists") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
                     teamShotInfo1.push(new Statistic(team["Assists"], i));
@@ -351,7 +348,7 @@ function drawViz1(choice1, choice2) {
                 }
             }
         );
-    } else if (selectVal === "blocks") {
+    } else if (selectVal === "Blocks") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
                     teamShotInfo1.push(new Statistic(team["Blocks"], i));
@@ -362,7 +359,7 @@ function drawViz1(choice1, choice2) {
                 }
             }
         );
-    } else if (selectVal === "steals") {
+    } else if (selectVal === "Steals") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
                     teamShotInfo1.push(new Statistic(team["Steals"], i));
@@ -373,7 +370,7 @@ function drawViz1(choice1, choice2) {
                 }
             }
         );
-    } else if (selectVal === "rebounds") {
+    } else if (selectVal === "Rebounds") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
                     teamShotInfo1.push(new Statistic(team["OffRebounds"], i));
@@ -490,16 +487,23 @@ function drawViz1(choice1, choice2) {
         .style("stroke-width", "1px");
 
 
-    var yAxis = d3.axisLeft(yAxisScale);
+
+    var yAxis = d3.axisLeft(yAxisScale)
+        .tickSize(-innerWidth);
+
+
+
 
     var formatter = d3.format("0");
 
 
-    axis.append("g").call(yAxis
+    axis2.append("g").call(yAxis
+
         .tickFormat(function (d) {
             if (d < 0) d = -d; // No nagative labels
             return formatter(d);
         }))
+
         .attr("transform", "translate(0," + 0 + ")");
 
 
@@ -509,21 +513,41 @@ function drawViz1(choice1, choice2) {
         .attr("transform", "translate(0," + (innerHeight) + ")");
 
 
+    axis2.select(".domain").remove();
+    axis2.selectAll(".tick line")
+        .attr("stroke", "#777")
+        .attr("stroke-dasharray", "2,2");
+
     AxisLabels(axis);
 
 
     //USE LATER
     axis.append("text")
-        .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65}) rotate(-90)`)
-        .attr("opacity", 1)
-        .attr("font-size", "12px")
+        .attr("transform", `translate(${(innerWidth + 20)},${(innerHeight / 2) - 65}) rotate(-90)`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
         .text(choice1);
 
     axis.append("text")
-        .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) + 65}) rotate(-90)`)
-        .attr("opacity", 1)
-        .attr("font-size", "12px")
+        .attr("transform", `translate(${(innerWidth + 20)},${(innerHeight / 2) + 65}) rotate(-90)`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
         .text(choice2);
+
+
+    axis.append("text")
+        .attr("transform", `translate(${(innerWidth/2) - 60},${-5})`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
+        .text(choice1 + " VS " + choice2 + " " + d3.select("#selectBox").property("value"));
+
+
 
 
 }
@@ -537,16 +561,68 @@ function info() {
         .attr("font-size", "100px")
         .text(text);
 }
-function drawPie(vizType){
+
+var cViz1 = [];
+var cViz2 = [];
+
+function executeViz3(arc1, name) {
+
+
+    console.log(arc1);
+    console.log(name);
+
+    if (arc1 == "a") {
+        if (cViz1.length == 0) {
+            cViz1 = ["X3PointShots", name, arc1]
+        } else {
+            cViz2 = ["X3PointShots", name, arc1];
+            if (cViz1.length != 0 && cViz2.length != 0 && cViz2[2] == cViz1[2]) {
+                drawViz3(cViz1, cViz2);
+                cViz1 = [];
+                cViz2 = [];
+            }
+
+        }
+    } else if (arc1 == "b") {
+        if (cViz1.length == 0) {
+            cViz1 = ["FieldGoals", name, arc1]
+        } else {
+            cViz2 = ["FieldGoals", name, arc1];
+            if (cViz1.length != 0 && cViz2.length != 0 && cViz2[2] == cViz1[2]) {
+                drawViz3(cViz1, cViz2);
+                cViz1 = [];
+                cViz2 = [];
+            }
+
+        }
+    } else if (arc1 == "c") {
+        if (cViz1.length == 0) {
+            cViz1 = ["FreeThrows", name, arc1]
+        } else {
+            cViz2 = ["FreeThrows", name, arc1];
+            if (cViz1.length != 0 && cViz2.length != 0 && cViz2[2] == cViz1[2]) {
+                drawViz3(cViz1, cViz2);
+                cViz1 = [];
+                cViz2 = [];
+
+            }
+
+        }
+    }
+
+
+}
+
+function drawPie(vizType) {
 
     var threepointer = 0;
     var fieldgoal = 0;
     var freethrow = 0;
-    var teamName = vizType.substring(1,4);
+    var teamName = vizType.substring(1, 4);
 
 
     teamStats.forEach((team) => {
-        if(teamName === team["Team"]){
+        if (teamName === team["Team"]) {
             freethrow += parseInt(team["FreeThrows"]);
             fieldgoal += (parseInt(team["FieldGoals"]) - parseInt(team["X3PointShots"])) * 2;
             threepointer += parseInt(team["X3PointShots"]) * 3;
@@ -566,15 +642,15 @@ function drawPie(vizType){
         .attr("width", width1)
         .attr("height", height1)
         .append("g")
-        .attr("transform", "translate(" + width1/2 + "," + height1/2 + ")");
+        .attr("transform", "translate(" + width1 / 2 + "," + height1 / 2 + ")");
 
     // Create dummy data
     var data = {a: threepointer, b: fieldgoal, c: freethrow}
 
     var totalPoints = threepointer + fieldgoal + freethrow;
-    var threePercent = Math.round((threepointer/totalPoints) * 100);
-    var fgPercent = Math.round((fieldgoal/totalPoints) * 100);
-    var ftPercent = Math.round((freethrow/totalPoints) * 100);
+    var threePercent = Math.round((threepointer / totalPoints) * 100);
+    var fgPercent = Math.round((fieldgoal / totalPoints) * 100);
+    var ftPercent = Math.round((freethrow / totalPoints) * 100);
 
     // set the color scale
     var color = d3.scaleOrdinal()
@@ -583,11 +659,14 @@ function drawPie(vizType){
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
-        .value(function(d) {return d.value; })
+        .value(function (d) {
+            return d.value;
+        })
     var data_ready = pie(d3.entries(data))
 
     var div = d3.select("body").append("div").attr("class", "tool-tip").attr("id", teamName);
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+
     svg
         .selectAll('whatever')
         .data(data_ready)
@@ -597,19 +676,19 @@ function drawPie(vizType){
             .innerRadius(60)         // This is the size of the donut hole
             .outerRadius(radius)
         )
-        .attr('fill', function(d){ return(color(d.data.key)) })
+        .attr('fill', function (d) {
+            return (color(d.data.key))
+        })
         .attr("stroke", "black")
         .style("stroke-width", "2px")
         .style("opacity", 0.7)
         .on("mousemove", function (d, i) {
 
-            if(d.data.key === "a"){
+            if (d.data.key === "a") {
                 var tooltip = "Team: " + teamName + "<br> Shots that are thee pointers: " + threePercent + "% ";
-            }
-            else if(d.data.key === "b"){
+            } else if (d.data.key === "b") {
                 var tooltip = "Team: " + teamName + "<br> Shots that are field goals: " + fgPercent + "% ";
-            }
-            else{
+            } else {
                 var tooltip = "Team: " + teamName + "<br> Shots that are free throws: " + ftPercent + "% ";
             }
             //console.log(tooltip);
@@ -621,204 +700,186 @@ function drawPie(vizType){
         })
         .on("mouseout", function (d, i) {
             div.style("opacity", 0);
+        })
+        .on("click", function (d) {
+            return executeViz3(d.data.key, vizType)
         });
 }
 
-function drawViz3(choice1, choice2) {
-
-    console.log(choice1);
-    console.log(choice2);
-
-    g3.select("#axis-g").remove();
-
-    let axis = g3.append("g").attr("id", "axis-g");
+function drawViz3(arryay1, arryay2) {
 
 
-    // console.log(teamStats);
+    if (arryay1[1] != "" && arryay2[1] != "") {
+        console.log(arryay1[0]);
+        console.log(arryay2[0]);
 
-    let teamShotInfoOne = [];
-    let teamShotInfoTwo = [];
 
-    //Used for range
-    let Range1 = [];
-    let Range2 = [];
-    let i = 1;
+        let choice1, choice2;
 
-    let selectVal = d3.select("#selectBox").property("value");
-    if (selectVal === "field-goals") {
+        choice1 = arryay1[1].substring(1, 4);
+        choice2 = arryay2[1].substring(1, 4);
+
+
+        g3.select("#axis-g").remove();
+
+        let axis = g3.append("g").attr("id", "axis-g");
+
+
+        // console.log(teamStats);
+
+        let teamShotInfoOne = [];
+        let teamShotInfoTwo = [];
+
+        //Used for range
+        let Range1 = [];
+        let Range2 = [];
+        let i = 1;
+        console.log(choice1);
+        console.log(choice2);
+
+        console.log(teamStats);
         teamStats.forEach((team) => {
-                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfoOne.push(new Statistic(team["FieldGoals."], i));
-                    teamShotInfoTwo.push(new Statistic((team["Opp.FieldGoals."] * -1), i));
-                    Range1.push(+team["FieldGoals."]);
-                    Range2.push(+team["Opp.FieldGoals."]);
-                    i++;
+                if (team["Team"] === choice1) {
+                    if (team["Opponent"] === choice2) {
+                        teamShotInfoOne.push(new Statistic(team[arryay1[0]], i));
+                        Range1.push(+team[team[arryay1[0]]]);
+                        i++;
+                    }
+
                 }
             }
         );
-    } else if (selectVal === "assists") {
+
+        i = 0;
+
         teamStats.forEach((team) => {
-                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfoOne.push(new Statistic(team["Assists"], i));
-                    teamShotInfoTwo.push(new Statistic((team["Opp.Assists"] * -1), i));
-                    Range1.push(+team["Assists"]);
-                    Range2.push(+team["Opp.Assists"]);
-                    i++;
+                if (team["Opponent"] === choice1) {
+                    if (team["Team"] === choice2) {
+                        teamShotInfoTwo.push(new Statistic(team[arryay2[0]], i));
+                        Range2.push(+team[arryay2[0]]);
+                        i++;
+                    }
                 }
             }
         );
-    } else if (selectVal === "blocks") {
-        teamStats.forEach((team) => {
-                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfoOne.push(new Statistic(team["Blocks"], i));
-                    teamShotInfoTwo.push(new Statistic((team["Opp.Blocks"] * -1), i));
-                    Range1.push(+team["Blocks"]);
-                    Range2.push(+team["Opp.Blocks"]);
-                    i++;
-                }
-            }
-        );
-    } else if (selectVal === "steals") {
-        teamStats.forEach((team) => {
-                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfoOne.push(new Statistic(team["Steals"], i));
-                    teamShotInfoTwo.push(new Statistic((team["Opp.Steals"] * -1), i));
-                    Range1.push(+team["Steals"]);
-                    Range2.push(+team["Opp.Steals"]);
-                    i++;
-                }
-            }
-        );
-    } else if (selectVal === "rebounds") {
-        teamStats.forEach((team) => {
-                if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfoOne.push(new Statistic(team["OffRebounds"], i));
-                    teamShotInfoTwo.push(new Statistic((team["Opp.OffRebounds"] * -1), i));
-                    Range1.push(+team["OffRebounds"]);
-                    Range2.push(+team["Opp.OffRebounds"]);
-                    i++;
-                }
-            }
-        );
-    }
-
-    let pos = innerWidth / Range1.length;
 
 
-    let range;
-    if (Math.max(...Range2) < Math.max(...Range1)) {
-        range = Math.max(...Range1);
-    } else {
-        range = Math.max(...Range2);
-    }
-    var yScale = d3.scaleLinear()
-        .domain([0, range])
-        .range([0, 168]);
+        let pos = innerWidth / Range1.length;
 
 
-    //used for the positive and negative axis values
-    var yAxisScale = d3.scaleLinear()
-        .domain([0, range])
-        .range([innerHeight, 0]);
-
-    var xScale = d3.scaleLinear()
-        .range([0, innerWidth])
-        .domain([0, teamShotInfoOne.length]);
-
-    console.log("Teaminfo1:", teamShotInfoOne);
-    console.log("Teaminfo2:", teamShotInfoTwo);
-
-    const singleLine = d3.line().curve(d3.curveNatural)
-        .x(d => xScale(d.game))
-        .y(d => yAxisScale(d.val))
-
-    const singleLine2 = d3.line().curve(d3.curveNatural)
-        .x(d => xScale(d.game))
-        .y(d => yAxisScale(d.val))
-
-    axis.append('path')
-        .datum(teamShotInfoOne)
-        // .attr('class', 'singleLine')
-        .style('fill', 'none')
-        .style('stroke', 'red')
-        .style('stroke-width', '2')
-        .attr('d', singleLine);
-
-    axis.selectAll("dot")
-        .data(teamShotInfoOne)
-        .enter().append("circle")
-        .style("fill", "red")
-        .attr("r", 4)
-        .attr("cx", function (d) {
-            console.log(d.game)
-            return xScale(d.game);
-        })
-        .attr("cy", function (d) {
-            console.log(d.val)
-            return yAxisScale(Math.abs(d.val));
-        })
+        let range;
+        if (Math.max(...Range2) < Math.max(...Range1)) {
+            range = Math.max(...Range1);
+        } else {
+            range = Math.max(...Range2);
+        }
 
 
-    axis.append('path')
-        .datum(teamShotInfoTwo)
-        // .attr('class', 'singleLine')
-        .style('fill', 'none')
-        .style('stroke', 'red')
-        .style('stroke-width', '2')
-        .attr('d', singleLine2);
+        //used for the positive and negative axis values
+        var yScale = d3.scaleLinear()
+            .domain([0, range])
+            .range([innerHeight, 0]);
 
-    axis.selectAll("dot")
-        .data(teamShotInfoTwo)
-        .enter().append("circle")
-        .attr("r", 4)
-        .style("fill", "blue")
-        .attr("cx", function (d) {
-            console.log(d.game)
-            return xScale(d.game);
-        })
-        .attr("cy", function (d) {
-            console.log(d.val)
-            return yAxisScale(Math.abs(d.val));
-        })
+        var xScale = d3.scaleLinear()
+            .range([0, innerWidth])
+            .domain([0, teamShotInfoOne.length]);
 
 
-    var yAxis = d3.axisLeft(yAxisScale);
-
-    var formatter = d3.format("0");
-
-
-    axis.append("g").call(yAxis
-        .tickFormat(function (d) {
-            if (d < 0) d = -d; // No nagative labels
-            return formatter(d);
-        }))
-        .attr("transform", "translate(0," + 0 + ")");
+        const singleLine = d3.line().curve(d3.curveNatural)
+            .x(d => xScale(d.game))
+            .y(d => yScale(d.val));
 
 
-    var xAxis = d3.axisBottom(xScale);/*.tickFormat("");remove tick label*/
+        axis.append('path')
+            .datum(teamShotInfoOne)
+            .style('fill', 'none')
+            .style('stroke', 'red')
+            .style('stroke-width', '2')
+            .attr('d', singleLine);
 
-    axis.append("g").call(xAxis)
-        .attr("transform", "translate(0," + (innerHeight) + ")");
+        axis.selectAll("dot")
+            .data(teamShotInfoOne)
+            .enter().append("circle")
+            .style("fill", "red")
+            .attr("r", 4)
+            .attr("cx", function (d) {
+                return xScale(d.game);
+            })
+            .attr("cy", function (d) {
+                return yScale(Math.abs(d.val));
+            });
 
 
-    AxisLabels(axis);
+        axis.selectAll("dot")
+            .data(teamShotInfoTwo)
+            .enter().append("circle")
+            .attr("r", 4)
+            .style("fill", "blue")
+            .attr("cx", function (d) {
+                return xScale(d.game);
+            })
+            .attr("cy", function (d) {
+                return yScale(Math.abs(d.val));
+            });
+
+        axis.append('path')
+            .datum(teamShotInfoTwo)
+            .style('fill', 'none')
+            .style('stroke', 'blue')
+            .style('stroke-width', '2')
+            .attr('d', singleLine);
 
 
-    //USE LATER
-    axis.append("text")
+        var yAxis = d3.axisLeft(yScale)
+
+            .tickSize(-innerWidth);
+
+
+
+
+        axis.append("g").call(yAxis)
+            .attr("stroke", "#777")
+            .attr("stroke-dasharray", "2,2")
+            .attr("transform", "translate(0," + 0 + ")");
+
+
+        var xAxis = d3.axisBottom(xScale);/*.tickFormat("");remove tick label*/
+
+        axis.append("g").call(xAxis)
+            .attr("transform", "translate(0," + (innerHeight) + ")");
+
+
+        AxisLabels(axis);
+
+
+        //USE LATER
+        axis.append("text")
         // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
-        .attr("x", margin.bottom)
-        .attr("y", margin.bottom + 290)
-        .attr("opacity", 1)
-        .attr("font-size", "12px")
-        .text(choice1);
+            .attr("x", margin.bottom)
+            .attr("y", margin.bottom + 290)
+            .attr("opacity", 1)
+            .attr("font-size", "12px")
+            .text(choice1);
 
-    axis.append("text")
-        .attr("x", margin.bottom + 370)
-        .attr("y", margin.bottom + 290)
-        .attr("opacity", 1)
-        .attr("font-size", "12px")
-        .text(choice2);
+        axis.append("text")
+            .attr("x", margin.bottom + 370)
+            .attr("y", margin.bottom + 290)
+            .attr("opacity", 1)
+            .attr("font-size", "12px")
+            .text(choice2);
+
+
+        axis.append("text")
+            .attr("transform", `translate(${(innerWidth - 400)},${-5})`)
+            .style("fill", "gray")
+            .style('text-anchor', 'center')
+            .style("font-size", "larger")
+            .style("font-weight", " 500")
+            .text(choice1 + " VS " + choice2 + " Shot Percentages");
+
+
+
+    }
 
 }
 
@@ -832,8 +893,6 @@ function drawSwarm(choice1, choice2, selectedGame) {
         .attr("class", "tool-tip")
         .style("opacity", 0);
 
-    console.log("Drawing Swarm:");
-    console.log(teamStats);
 
     //Used for Graphing
     let teamShotInfo = [];
@@ -884,14 +943,13 @@ function drawSwarm(choice1, choice2, selectedGame) {
         }
     );
 
-    console.log(teamShotInfo);
     let sectors = Array.from(new Set(teamShotInfo.map((d) => d.Opp)));
     let xCoords = sectors.map((d, i) => (innerWidth / 2) - 50 + i * 200);
     let xScale = d3.scaleOrdinal().domain(sectors).range(xCoords);
 
     let yScale = d3
         .scaleLinear()
-        .domain([0, 125])
+        .domain([0, 150])
         .range([height - 50, 50]); // using 25 just to provide some margin at the top and bottom
 
     let size = d3.scaleLinear().domain([0, 150]).range([15, 40]);
@@ -907,7 +965,6 @@ function drawSwarm(choice1, choice2, selectedGame) {
     viz4.append("g").call(yAxis)
         .attr("transform", `translate(${innerWidth + 90}, 10)`);
 
-    console.log(innerWidth);
     viz4.append('text')
         .attr('transform', 'rotate(90)')
         .attr('dy', -innerWidth - 100)
@@ -926,13 +983,13 @@ function drawSwarm(choice1, choice2, selectedGame) {
         .attr('transform', `translate(${(innerWidth / 2) - 75},${innerHeight + 150})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
-        .text("Team 1");
+        .text(choice1);
 
     viz4.append('text')
         .attr('transform', `translate(${(innerWidth / 2) + 125},${innerHeight + 150})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
-        .text("Team 2");
+        .text(choice2);
 
 
     function check() {
@@ -943,13 +1000,13 @@ function drawSwarm(choice1, choice2, selectedGame) {
         }
     }
 
-    viz4.append('text')
-        .attr('transform', `translate(${(innerWidth / 2) - 25},${innerHeight - 320})`)
-        .style("fill", "gray")
-        .style('text-anchor', 'center')
-        .style("font-size", "larger")
-        .style("font-weight", " 500")
-        .text("Statistics for Game:\t" + check());
+    // viz4.append('text')
+    //     .attr('transform', `translate(${(innerWidth / 2) - 25},${innerHeight - 320})`)
+    //     .style("fill", "gray")
+    //     .style('text-anchor', 'center')
+    //     .style("font-size", "larger")
+    //     .style("font-weight", " 500")
+    //     .text("Statistics for Game:\t" + check());
 
     //Draw Dots
     viz4.selectAll(".circ")
@@ -959,7 +1016,6 @@ function drawSwarm(choice1, choice2, selectedGame) {
         .attr("class", "circ")
         .attr("stroke", "black")
         .attr("fill", function (d) {
-            console.log(d);
             if (d.Opp == 'No') {
                 return colorScale(0);
             } else {
@@ -972,7 +1028,6 @@ function drawSwarm(choice1, choice2, selectedGame) {
         .attr("cx", (d) => xScale(d.Opp))
         .attr("cy", (d) => yScale(d.att_val))
         .on('mouseover', function (d, i) {
-            console.log(i.att + " -> " + i.att_val);
             d3.select(this)
                 .transition()
                 .duration('50')
@@ -1028,6 +1083,14 @@ function drawSwarm(choice1, choice2, selectedGame) {
     }
 
     simulation.alphaDecay(0.1);
+
+    viz4.append("text")
+        .attr("transform", `translate(${(innerWidth/2) - 20},${50})`)
+        .style("fill", "gray")
+        .style('text-anchor', 'center')
+        .style("font-size", "larger")
+        .style("font-weight", " 500")
+        .text(choice1 + " VS " + choice2 + " Game " + selectedGame);
 
 }
 
