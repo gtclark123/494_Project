@@ -742,7 +742,7 @@ function drawViz3(arryay1, arryay2) {
                 if (team["Team"] === choice1) {
                     if (team["Opponent"] === choice2) {
                         teamShotInfoOne.push(new Statistic(team[arryay1[0]], i));
-                        Range1.push(+team[team[arryay1[0]]]);
+                        Range1.push(+team[arryay1[0]]);
                         i++;
                     }
 
@@ -768,11 +768,16 @@ function drawViz3(arryay1, arryay2) {
 
 
         let range;
+
+        console.log("Range 1: ", Math.max(...Range1))
+        console.log("Range 2: ", Math.max(...Range2))
         if (Math.max(...Range2) < Math.max(...Range1)) {
             range = Math.max(...Range1);
         } else {
             range = Math.max(...Range2);
         }
+
+        console.log("Range: ", range);
 
 
         //used for the positive and negative axis values
@@ -788,19 +793,22 @@ function drawViz3(arryay1, arryay2) {
         const singleLine = d3.line().curve(d3.curveNatural)
             .x(d => xScale(d.game))
             .y(d => yScale(d.val));
+        const singleLine2 = d3.line().curve(d3.curveNatural)
+            .x(d => xScale(d.game + 1))
+            .y(d => yScale(d.val));
 
 
         axis.append('path')
             .datum(teamShotInfoOne)
             .style('fill', 'none')
-            .style('stroke', 'red')
+            .style('stroke', '#114591')
             .style('stroke-width', '2')
             .attr('d', singleLine);
 
         axis.selectAll("dot")
             .data(teamShotInfoOne)
             .enter().append("circle")
-            .style("fill", "red")
+            .style("fill", "#114591")
             .attr("r", 4)
             .attr("cx", function (d) {
                 return xScale(d.game);
@@ -814,9 +822,9 @@ function drawViz3(arryay1, arryay2) {
             .data(teamShotInfoTwo)
             .enter().append("circle")
             .attr("r", 4)
-            .style("fill", "blue")
+            .style("fill", "#eb4034")
             .attr("cx", function (d) {
-                return xScale(d.game);
+                return xScale(d.game + 1);
             })
             .attr("cy", function (d) {
                 return yScale(Math.abs(d.val));
@@ -825,9 +833,9 @@ function drawViz3(arryay1, arryay2) {
         axis.append('path')
             .datum(teamShotInfoTwo)
             .style('fill', 'none')
-            .style('stroke', 'blue')
+            .style('stroke', '#eb4034')
             .style('stroke-width', '2')
-            .attr('d', singleLine);
+            .attr('d', singleLine2);
 
 
         var yAxis = d3.axisLeft(yScale)
@@ -849,24 +857,47 @@ function drawViz3(arryay1, arryay2) {
             .attr("transform", "translate(0," + (innerHeight) + ")");
 
 
-        AxisLabels(axis);
+        axis.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('dy', "-40")
+            .attr('dx', '-250')
+            .style("fill", "gray")
+            .style('text-anchor', 'center')
+            .style("font-size", "larger")
+            .style("font-weight", " 500")
+            .text("Percentages");
+
+
+        axis.append('text')
+            .attr('transform', `translate(${(innerWidth / 2) - 150},${innerHeight + 40})`)
+            .style("fill", "gray")
+            .style('text-anchor', 'center')
+            .style("font-size", "larger")
+            .style("font-weight", " 500")
+            .text("Game Played During The Season");
+
+        // AxisLabels(axis);
 
 
         //USE LATER
         axis.append("text")
-        // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
-            .attr("x", margin.bottom)
+            // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
+            .attr("x", margin.bottom - 50)
             .attr("y", margin.bottom + 290)
             .attr("opacity", 1)
-            .attr("font-size", "12px")
-            .text(choice1);
+            .attr("font-size", "16px")
+            .text(choice1)
+            .style("stroke", "#114591");
+
 
         axis.append("text")
             .attr("x", margin.bottom + 370)
             .attr("y", margin.bottom + 290)
             .attr("opacity", 1)
-            .attr("font-size", "12px")
-            .text(choice2);
+            .attr("font-size", "16px")
+            .text(choice2)
+            .style("stroke", "#eb4034");
+
 
 
         axis.append("text")
