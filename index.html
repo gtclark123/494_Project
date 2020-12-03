@@ -312,7 +312,7 @@
 
             let element = document.getElementById(str);
 
-            element.style.border = "3px solid black";
+            element.style.border = "4px solid red";
             element.style.padding = "6px, 6px, 6px, 6px";
             element.style.borderRadius = "50%";
 
@@ -321,7 +321,7 @@
             select2 = 1;
             let element = document.getElementById(str);
 
-            element.style.border = "3px solid black";
+            element.style.border = "4px solid red";
             element.style.padding = "6px, 6px, 6px, 6px";
             element.style.borderRadius = "50%";
 
@@ -350,21 +350,31 @@
     }
 
     function clearGraph() {
-        let element1 = document.getElementById(choice1);
-        let element2 = document.getElementById(choice2);
 
-        element1.style = "none";
-        element2.style = "none";
+        if(choice1 == "" && choice2 ==""){
+            clearAll();
+
+        }
+        else{
+            let element1 = document.getElementById(choice1);
+            let element2 = document.getElementById(choice2);
+
+            element1.style = "none";
+            element2.style = "none";
 
 
-        choice1 = "";
-        choice2 = "";
+            choice1 = "";
+            choice2 = "";
 
 
-        select1 = 0;
-        select2 = 0;
+            select1 = 0;
+            select2 = 0;
 
-        clearAll();
+            clearAll();
+
+        }
+
+
     }
 
 </script>
