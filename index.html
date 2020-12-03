@@ -259,6 +259,8 @@
                     <option value="Assists">Assists</option>
                     <option value="Steals">Steals</option>
                 </select>
+                <button id="clear-button" type="button" onclick="clearGraph()">Clear Graphs</button>
+
             </div>
             <svg id="viz1"></svg>
             <div id="viz2">
@@ -299,9 +301,9 @@
 
 <script>
 
-    let choice1, choice2;
-    let select1 = 0;
-    let select2 = 0;
+    var choice1, choice2;
+    var select1 = 0;
+    var select2 = 0;
 
     function getTeams(str) {
         if (!Boolean(select1)) {
@@ -340,8 +342,6 @@
             choice1 = "";
             choice2 = "";
 
-            drawViz1(choice1, choice2);
-
             select1 = 0;
             select2 = 0;
 
@@ -349,7 +349,27 @@
         }
 
     }
+
+    function clearGraph() {
+        let element1 = document.getElementById(choice1);
+        let element2 = document.getElementById(choice2);
+
+        element1.style = "none";
+        element2.style = "none";
+
+
+        choice1 = "";
+        choice2 = "";
+
+
+        select1 = 0;
+        select2 = 0;
+
+        clearAll();
+    }
+
 </script>
+
 
 
 </html>

@@ -25,15 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
     innerWidth = width - margin.left - margin.right;
     innerHeight = height - margin.top - margin.bottom;
 
+
     g1 = viz1
-        .append('g')
-        .attr("id", "g1")
-        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
-    g2 = viz2
-        .append('g')
-        .attr("id", "g1")
-        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
-    g3 = viz3
         .append('g')
         .attr("id", "g1")
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
@@ -79,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
             drawPie("#WASviz");
             drawPie("#CLEviz");
 
-            info();
 
         });
 
@@ -157,14 +149,14 @@ function mousemove(axis, choice1, choice2) {
 
 
                 if (d["val"] < 0) {
-                    let val = "Field Goal Percentage: " + fixed * -1 + "</br>" + "Game: " + d["game"];
+                    let val = "Field Goal Percentage: " + fixed * -1 + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 } else {
 
-                    let val = "Percentage Made: " + fixed + "</br>" + "Game: " + d["game"];
+                    let val = "Percentage Made: " + fixed + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
@@ -173,14 +165,14 @@ function mousemove(axis, choice1, choice2) {
 
             } else if (d3.select("#selectBox").property("value") === "Assists") {
                 if (d["val"] < 0) {
-                    let val = "Assists : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
+                    let val = "Assists : " + d["val"] * -1 + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 } else {
 
-                    let val = "Assists : " + d["val"] + "</br>" + "Game: " + d["game"];
+                    let val = "Assists : " + d["val"] + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
@@ -188,14 +180,14 @@ function mousemove(axis, choice1, choice2) {
                 }
             } else if (d3.select("#selectBox").property("value") === "Blocks") {
                 if (d["val"] < 0) {
-                    let val = "Blocks : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
+                    let val = "Blocks : " + d["val"] * -1 + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 } else {
 
-                    let val = "Blocks : " + d["val"] + "</br>" + "Game: " + d["game"];
+                    let val = "Blocks : " + d["val"] + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
@@ -203,14 +195,14 @@ function mousemove(axis, choice1, choice2) {
                 }
             } else if (d3.select("#selectBox").property("value") === "Steals") {
                 if (d["val"] < 0) {
-                    let val = "Steals : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
+                    let val = "Steals : " + d["val"] * -1 + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 } else {
 
-                    let val = "Steals : " + d["val"] + "</br>" + "Game: " + d["game"];
+                    let val = "Steals : " + d["val"] + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
@@ -218,14 +210,14 @@ function mousemove(axis, choice1, choice2) {
                 }
             } else if (d3.select("#selectBox").property("value") === "Rebounds") {
                 if (d["val"] < 0) {
-                    let val = "Offensive Rebounds : " + d["val"] * -1 + "</br>" + "Game: " + d["game"];
+                    let val = "Offensive Rebounds : " + d["val"] * -1 + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 15) + "px");
                 } else {
 
-                    let val = "Offensive Rebounds : " + d["val"] + "</br>" + "Game: " + d["game"];
+                    let val = "Offensive Rebounds : " + d["val"] + "</br>" + "Game: " + d["game"] + "</br>" + "Date: " + d["date"];
 
                     div.html(val)
                         .style("left", (event.pageX + 10) + "px")
@@ -250,9 +242,10 @@ function mousemove(axis, choice1, choice2) {
 }
 
 
-function Statistic(attempted, game) {
+function Statistic(attempted, game, date) {
     this.val = attempted;
     this.game = game;
+    this.date = date;
 }
 
 
@@ -329,8 +322,8 @@ function drawViz1(choice1, choice2) {
     if (selectVal === "Field-goals") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfo1.push(new Statistic(team["FieldGoals."], i));
-                    teamShotInfo2.push(new Statistic((team["Opp.FieldGoals."] * -1), i));
+                    teamShotInfo1.push(new Statistic(team["FieldGoals."], i, team["Date"]));
+                    teamShotInfo2.push(new Statistic((team["Opp.FieldGoals."] * -1), i, team["Date"]));
                     Range1.push(+team["FieldGoals."]);
                     Range2.push(+team["Opp.FieldGoals."]);
                     i++;
@@ -340,8 +333,8 @@ function drawViz1(choice1, choice2) {
     } else if (selectVal === "Assists") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfo1.push(new Statistic(team["Assists"], i));
-                    teamShotInfo2.push(new Statistic((team["Opp.Assists"] * -1), i));
+                    teamShotInfo1.push(new Statistic(team["Assists"], i, team["Date"]));
+                    teamShotInfo2.push(new Statistic((team["Opp.Assists"] * -1), i, team["Date"]));
                     Range1.push(+team["Assists"]);
                     Range2.push(+team["Opp.Assists"]);
                     i++;
@@ -351,8 +344,8 @@ function drawViz1(choice1, choice2) {
     } else if (selectVal === "Blocks") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfo1.push(new Statistic(team["Blocks"], i));
-                    teamShotInfo2.push(new Statistic((team["Opp.Blocks"] * -1), i));
+                    teamShotInfo1.push(new Statistic(team["Blocks"], i, team["Date"]));
+                    teamShotInfo2.push(new Statistic((team["Opp.Blocks"] * -1), i, team["Date"]));
                     Range1.push(+team["Blocks"]);
                     Range2.push(+team["Opp.Blocks"]);
                     i++;
@@ -362,8 +355,8 @@ function drawViz1(choice1, choice2) {
     } else if (selectVal === "Steals") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfo1.push(new Statistic(team["Steals"], i));
-                    teamShotInfo2.push(new Statistic((team["Opp.Steals"] * -1), i));
+                    teamShotInfo1.push(new Statistic(team["Steals"], i, team["Date"]));
+                    teamShotInfo2.push(new Statistic((team["Opp.Steals"] * -1), i, team["Date"]));
                     Range1.push(+team["Steals"]);
                     Range2.push(+team["Opp.Steals"]);
                     i++;
@@ -373,8 +366,8 @@ function drawViz1(choice1, choice2) {
     } else if (selectVal === "Rebounds") {
         teamStats.forEach((team) => {
                 if (team["Team"] === choice1 && team["Opponent"] === choice2) {
-                    teamShotInfo1.push(new Statistic(team["OffRebounds"], i));
-                    teamShotInfo2.push(new Statistic((team["Opp.OffRebounds"] * -1), i));
+                    teamShotInfo1.push(new Statistic(team["OffRebounds"], i, team["Date"]));
+                    teamShotInfo2.push(new Statistic((team["Opp.OffRebounds"] * -1), i, team["Date"]));
                     Range1.push(+team["OffRebounds"]);
                     Range2.push(+team["Opp.OffRebounds"]);
                     i++;
@@ -487,11 +480,8 @@ function drawViz1(choice1, choice2) {
         .style("stroke-width", "1px");
 
 
-
     var yAxis = d3.axisLeft(yAxisScale)
         .tickSize(-innerWidth);
-
-
 
 
     var formatter = d3.format("0");
@@ -524,7 +514,7 @@ function drawViz1(choice1, choice2) {
     //USE LATER
     axis.append("text")
         .attr("transform", `translate(${(innerWidth + 20)},${(innerHeight / 2) - 65}) rotate(-90)`)
-        .style("fill", "gray")
+        .style("fill", colorScale(0))
         .style('text-anchor', 'center')
         .style("font-size", "larger")
         .style("font-weight", " 500")
@@ -532,7 +522,7 @@ function drawViz1(choice1, choice2) {
 
     axis.append("text")
         .attr("transform", `translate(${(innerWidth + 20)},${(innerHeight / 2) + 65}) rotate(-90)`)
-        .style("fill", "gray")
+        .style("fill", colorScale(1))
         .style('text-anchor', 'center')
         .style("font-size", "larger")
         .style("font-weight", " 500")
@@ -540,7 +530,7 @@ function drawViz1(choice1, choice2) {
 
 
     axis.append("text")
-        .attr("transform", `translate(${(innerWidth/2) - 60},${-5})`)
+        .attr("transform", `translate(${(innerWidth / 2) - 60},${-5})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
         .style("font-size", "larger")
@@ -548,19 +538,8 @@ function drawViz1(choice1, choice2) {
         .text(choice1 + " VS " + choice2 + " " + d3.select("#selectBox").property("value"));
 
 
-
-
 }
 
-function info() {
-
-    let text = "";
-    g2.append("text")
-        .attr("transform", `translate(${0},${(innerHeight / 2) + 65})`)
-        .attr("opacity", 1)
-        .attr("font-size", "100px")
-        .text(text);
-}
 
 var cViz1 = [];
 var cViz2 = [];
@@ -709,6 +688,12 @@ function drawPie(vizType) {
 function drawViz3(arryay1, arryay2) {
 
 
+    g3 = viz3
+        .append('g')
+        .attr("id", "g3")
+        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
+
+
     if (arryay1[1] != "" && arryay2[1] != "") {
         console.log(arryay1[0]);
         console.log(arryay2[0]);
@@ -843,8 +828,6 @@ function drawViz3(arryay1, arryay2) {
             .tickSize(-innerWidth);
 
 
-
-
         axis.append("g").call(yAxis)
             .attr("stroke", "#777")
             .attr("stroke-dasharray", "2,2")
@@ -881,8 +864,8 @@ function drawViz3(arryay1, arryay2) {
 
         //USE LATER
         axis.append("text")
-            // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
-            .attr("x", margin.bottom - 50)
+        // .attr("transform", `translate(${(innerWidth + 15)},${(innerHeight / 2) - 65})`)
+            .attr("x", innerWidth / 2 + 100)
             .attr("y", margin.bottom + 290)
             .attr("opacity", 1)
             .attr("font-size", "16px")
@@ -891,7 +874,7 @@ function drawViz3(arryay1, arryay2) {
 
 
         axis.append("text")
-            .attr("x", margin.bottom + 370)
+            .attr("x", innerWidth / 2 - 150)
             .attr("y", margin.bottom + 290)
             .attr("opacity", 1)
             .attr("font-size", "16px")
@@ -899,15 +882,13 @@ function drawViz3(arryay1, arryay2) {
             .style("stroke", "#eb4034");
 
 
-
         axis.append("text")
-            .attr("transform", `translate(${(innerWidth - 400)},${-5})`)
+            .attr("transform", `translate(${(innerWidth / 2) - 100},${-30})`)
             .style("fill", "gray")
             .style('text-anchor', 'center')
             .style("font-size", "larger")
             .style("font-weight", " 500")
             .text(choice1 + " VS " + choice2 + " Shot Percentages");
-
 
 
     }
@@ -1116,7 +1097,7 @@ function drawSwarm(choice1, choice2, selectedGame) {
     simulation.alphaDecay(0.1);
 
     viz4.append("text")
-        .attr("transform", `translate(${(innerWidth/2) - 20},${50})`)
+        .attr("transform", `translate(${(innerWidth / 2) - 20},${50})`)
         .style("fill", "gray")
         .style('text-anchor', 'center')
         .style("font-size", "larger")
@@ -1174,4 +1155,19 @@ function splitTeamData(sData) {
     });
     // console.log(res);
     return res;
+}
+
+function clearAll() {
+
+    console.log("here");
+    d3.select("#g1").remove();
+
+    g1 = viz1
+        .append('g')
+        .attr("id", "g1")
+        .attr('transform', `translate(${margin.left},${margin.top + 20})`);
+    viz4.selectAll("*").remove();
+
+    d3.select("#g3").remove();
+
 }
