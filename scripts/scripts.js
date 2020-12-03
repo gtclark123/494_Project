@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
 
 
+
+
+
+
     Promise.all([
         d3.csv('Data/nbagames.csv'),
 
@@ -688,11 +692,11 @@ function drawPie(vizType) {
 function drawViz3(arryay1, arryay2) {
 
 
+    d3.select("#g3").remove();
     g3 = viz3
         .append('g')
         .attr("id", "g3")
         .attr('transform', `translate(${margin.left},${margin.top + 20})`);
-
 
     if (arryay1[1] != "" && arryay2[1] != "") {
         console.log(arryay1[0]);
