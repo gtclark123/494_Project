@@ -929,7 +929,7 @@ function drawSwarm(choice1, choice2, selectedGame) {
                     TurnOvers: team["Turnovers"],
                     TotalRebounds: team["TotalRebounds"],
                     FreeThrowsAttempted: team["FreeThrowsAttempted"],
-                    FieldGoalsAttempted: team["FieldGoalsAttempted:"],
+                    FieldGoalsAttempted: team["FieldGoalsAttempted"],
                     TotalFouls: team["TotalFouls"],
                     TotalRebounds: team["TotalRebounds"],
                     Turnovers: team["Turnovers"]
